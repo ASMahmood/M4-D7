@@ -5,37 +5,10 @@ import SingleComment from "./SingleComment";
 class CommentList extends React.Component {
   state = {
     comments: [],
-    loading: true,
-  };
-
-  fetchComments = async () => {
-    try {
-      let response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/comments/${this.props.movieId}`,
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI2N2UzZjk4MzViMDAwMTc1ODRlZmUiLCJpYXQiOjE2MDU3OTUzOTIsImV4cCI6MTYwNzAwNDk5Mn0.DfmIOMUkFDOn23K1S3KRRfRDXdq3PuQ85LIP5I7piVI",
-          },
-        }
-      );
-      let comments = await response.json();
-      this.setState({ comments: comments, loading: false });
-    } catch (e) {
-      console.log(e);
-      this.setState({ loading: false });
-    }
   };
 
   componentDidMount = () => {
-    this.fetchComments();
-    console.log("fetching comments");
-  };
-
-  componentDidUpdate = (previousProps) => {
-    if (previousProps.movieId !== this.props.movieId) {
-      this.fetchComments();
-    }
+    this.setState({ comments: this.props.comments });
   };
 
   render() {
@@ -48,9 +21,14 @@ class CommentList extends React.Component {
           </div>
         )}
         <ListGroup variant="flush" className="w-100">
-          {this.state.comments.map((comment, index) => (
-            <SingleComment commentObj={comment} key={index} />
-          ))}
+          {this.props.comments.length > 0 &&
+            this.props.comments.map((comment, index) => (
+              <SingleComment
+                commentObj={comment}
+                key={index}
+                onFetch={this.props.onFetch}
+              />
+            ))}
         </ListGroup>
       </>
     );

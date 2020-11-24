@@ -61,7 +61,7 @@ class AddComment extends React.Component {
             elementId: this.props.movieId,
           },
         });
-        this.props.history.push("/details/" + this.props.movieId);
+        this.props.onFetch();
       } else {
         console.log("uh oh stinky");
         let error = await response.json();

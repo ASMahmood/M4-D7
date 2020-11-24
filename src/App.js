@@ -45,16 +45,19 @@ class App extends React.Component {
                   loadingstate={this.state.loading}
                   searchQuery="harry potter"
                   title="Search for: "
+                  {...props}
                 />
                 <FixedGallery
                   loadingstate={this.state.loading}
                   searchQuery="lord of the rings"
                   title="Search for: "
+                  {...props}
                 />
                 <FixedGallery
                   loadingstate={this.state.loading}
                   searchQuery="pokemon"
                   title="Search for: "
+                  {...props}
                 />
               </Container>
             )}

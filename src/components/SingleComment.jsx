@@ -21,6 +21,7 @@ class SingleComment extends React.Component {
       );
       if (response.ok) {
         alert("Deleted");
+        this.props.onFetch();
       } else {
         console.log("uh oh stinky");
         let error = await response.json();

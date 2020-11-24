@@ -45,8 +45,11 @@ class ShowDetails extends React.Component {
             <Row>
               <Col className="d-flex align-items-center mb-3">
                 <span className="text-muted">
-                  {this.state.movie.Type} • {this.state.movie.Runtime} •{" "}
-                  {this.state.movie.Released} • {this.state.movie.Genre}
+                  {this.state.movie.Type} •{" "}
+                  {this.state.movie.totalSeasons
+                    ? this.state.movie.totalSeasons + " Seasons"
+                    : this.state.movie.Runtime}{" "}
+                  • {this.state.movie.Released} • {this.state.movie.Genre}
                 </span>
               </Col>
             </Row>
