@@ -40,7 +40,7 @@ class SingleComment extends React.Component {
     return (
       <ListGroup.Item
         style={{ backgroundColor: "rgba(0, 0, 0, 0.1)", borderRadius: "10px" }}
-        className=" w-100 d-flex justify-content-between align-items-center"
+        className=" w-100 mb-1 d-flex justify-content-between align-items-center"
       >
         <Badge variant="success">
           {this.props.commentObj.rate ? this.props.commentObj.rate : "ERR"}
