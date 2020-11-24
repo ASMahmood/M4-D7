@@ -10,6 +10,7 @@ import { Container } from "react-bootstrap";
 import FixedGallery from "./components/FixedGallery";
 import { BrowserRouter, Route } from "react-router-dom";
 import ShowDetails from "./components/ShowDetails";
+import TvShows from "./components/TvShows";
 
 class App extends React.Component {
   state = {
@@ -62,10 +63,18 @@ class App extends React.Component {
           <Route
             path="/details/:id"
             render={(props) => (
-              <Container classNamne="px-5 mt-5">
+              <Container className="px-5 mt-5">
                 <ShowDetails {...props} />
                 <CommentArea {...props} />
               </Container>
+            )}
+          />
+
+          <Route
+            path="/tvshows"
+            exact
+            render={(props) => (
+              <TvShows searchQuery={this.state.query} {...props} />
             )}
           />
 

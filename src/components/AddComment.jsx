@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
 class AddComment extends React.Component {
   state = {
@@ -60,6 +61,7 @@ class AddComment extends React.Component {
             elementId: this.props.movieId,
           },
         });
+        this.props.history.push("/details/" + this.props.movieId);
       } else {
         console.log("uh oh stinky");
         let error = await response.json();
@@ -117,7 +119,12 @@ class AddComment extends React.Component {
               </Form.Group>
             </Col>
             <Col xs={6}>
-              <Button type="sumbit" variant="success" value="Submit">
+              <Button
+                type="sumbit"
+                variant="success"
+                value="Submit"
+                className="w-100 h-100"
+              >
                 Submit{" "}
               </Button>
             </Col>
@@ -128,4 +135,4 @@ class AddComment extends React.Component {
   }
 }
 
-export default AddComment;
+export default withRouter(AddComment);

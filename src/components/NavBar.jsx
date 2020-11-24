@@ -2,15 +2,8 @@ import React from "react";
 import "./NavBar.css";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import SearchIcon from "@material-ui/icons/Search";
-import {
-  Navbar,
-  NavDropdown,
-  Form,
-  Nav,
-  FormControl,
-  Button,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Navbar, Form, Nav, FormControl, Button } from "react-bootstrap";
+import { Link, withRouter } from "react-router-dom";
 
 let attempt = 1;
 class NavBar extends React.Component {
@@ -47,24 +40,37 @@ class NavBar extends React.Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home" className="navItem">
-              <a class="navText"> Home </a>
-            </Nav.Link>
-            <Nav.Link href="#link" className="navItem">
-              <a class="navText"> Tv shows </a>
-            </Nav.Link>
-            <Nav.Link href="#link" className="navItem">
-              <a class="navText"> Movies </a>
-            </Nav.Link>
-            <Nav.Link href="#link" className="navItem">
-              <a class="navText"> Recently Added </a>
-            </Nav.Link>
-            <Nav.Link href="#link" className="navItem">
-              <a class="navText"> My List </a>
-            </Nav.Link>
-            <Nav.Link href="#link" className="navItem">
-              <a class="navText"> Back Office </a>
-            </Nav.Link>
+            <Link to="/">
+              <div
+                className={
+                  this.props.location.pathname === "/"
+                    ? "nav-link selected"
+                    : "nav-link"
+                }
+              >
+                Home
+              </div>
+            </Link>
+            <Link to="/tvshows">
+              <div
+                className={
+                  this.props.location.pathname === "/tvshows"
+                    ? "nav-link selected"
+                    : "nav-link"
+                }
+              >
+                TV Shows
+              </div>
+            </Link>
+            <Link to="/">
+              <div className="nav-link">Movies</div>
+            </Link>
+            <Link to="/">
+              <div className="nav-link">Recently Added</div>
+            </Link>
+            <Link to="/">
+              <div className="nav-link">My List</div>
+            </Link>
           </Nav>
           <Form
             onSubmit={(e) => {
@@ -105,4 +111,4 @@ class NavBar extends React.Component {
     );
   }
 }
-export default NavBar;
+export default withRouter(NavBar);
