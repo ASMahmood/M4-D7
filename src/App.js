@@ -36,19 +36,24 @@ class App extends React.Component {
                 <DynamicGallery
                   onSelect={this.onSelect}
                   searchQuery={this.state.query}
+                  titlePart1="First "
+                  titlePart2=" results for: "
                   {...props}
                 />
                 <FixedGallery
                   loadingstate={this.state.loading}
                   searchQuery="harry potter"
+                  title="Search for: "
                 />
                 <FixedGallery
                   loadingstate={this.state.loading}
                   searchQuery="lord of the rings"
+                  title="Search for: "
                 />
                 <FixedGallery
                   loadingstate={this.state.loading}
                   searchQuery="pokemon"
+                  title="Search for: "
                 />
               </Container>
             )}

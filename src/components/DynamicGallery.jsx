@@ -107,10 +107,12 @@ class DynamicGallery extends React.Component {
       } else {
         return (
           <>
-            <h2 className="align-self-start">
-              First {this.state.movieArray.length} results for:{" "}
-              {this.props.searchQuery}
-            </h2>
+            <h1 className="align-self-start">
+              {this.props.titlePart1 +
+                this.state.movieArray.length +
+                this.props.titlePart2 +
+                this.props.searchQuery}
+            </h1>
             {this.state.movieArray.length > 0 && (
               <OwlCarousel margin={10}>
                 {this.state.movieArray.map((movie, index) => (

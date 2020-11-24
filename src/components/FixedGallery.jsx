@@ -31,9 +31,9 @@ class FixedGallery extends React.Component {
   render() {
     return (
       <>
-        <h2 className="align-self-start">
-          Search for: {this.props.searchQuery}
-        </h2>
+        <h1 className="align-self-start">
+          {this.props.title + this.props.searchQuery}
+        </h1>
 
         {this.state.movieArray.length > 0 && (
           <OwlCarousel margin={10} mouseDrag={true}>
