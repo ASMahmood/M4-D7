@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import FixedGallery from "./components/FixedGallery";
 import { BrowserRouter, Route } from "react-router-dom";
+import ShowDetails from "./components/ShowDetails";
 
 class App extends React.Component {
   state = {
@@ -19,10 +20,6 @@ class App extends React.Component {
   onSearch = (searchQuery) => {
     this.setState({ query: searchQuery });
     console.log("QUERY IN APP.JS", this.state.query);
-  };
-  onSelect = (selectedMovie) => {
-    this.setState({ selected: selectedMovie });
-    console.log(this.state.selected);
   };
 
   render() {
@@ -36,10 +33,10 @@ class App extends React.Component {
             exact
             render={(props) => (
               <Container fluid className="px-5 mt-5">
-                <CommentArea movieId={this.state.selected} {...props} />
                 <DynamicGallery
                   onSelect={this.onSelect}
                   searchQuery={this.state.query}
+                  {...props}
                 />
                 <FixedGallery
                   loadingstate={this.state.loading}
@@ -53,6 +50,16 @@ class App extends React.Component {
                   loadingstate={this.state.loading}
                   searchQuery="pokemon"
                 />
+              </Container>
+            )}
+          />
+
+          <Route
+            path="/details/:id"
+            render={(props) => (
+              <Container classNamne="px-5 mt-5">
+                <ShowDetails {...props} />
+                <CommentArea {...props} />
               </Container>
             )}
           />

@@ -2,9 +2,9 @@ import React from "react";
 
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import OwlCarousel from "react-owl-carousel";
 
-import { Modal, Button, Form, Spinner } from "react-bootstrap";
+import OwlCarousel from "react-owl-carousel";
+import { Spinner } from "react-bootstrap";
 
 class DynamicGallery extends React.Component {
   state = {
@@ -63,6 +63,7 @@ class DynamicGallery extends React.Component {
       } else {
         console.log("uh oh stinky");
         let error = await response.json();
+        console.log(error);
       }
     } catch (e) {
       console.log(e);
@@ -74,23 +75,6 @@ class DynamicGallery extends React.Component {
     let currentId = e.currentTarget.id;
     comment[currentId] = e.currentTarget.value;
     this.setState({ comment: comment });
-  };
-
-  fetchComments = async (id) => {
-    this.setState({ show: true });
-    try {
-      let response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/comments/`,
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI2N2UzZjk4MzViMDAwMTc1ODRlZmUiLCJpYXQiOjE2MDU3OTUzOTIsImV4cCI6MTYwNzAwNDk5Mn0.DfmIOMUkFDOn23K1S3KRRfRDXdq3PuQ85LIP5I7piVI",
-          },
-        }
-      );
-      let comments = await response.json();
-      console.log(comments);
-    } catch (e) {}
   };
 
   fetchMovie = async () => {
@@ -133,7 +117,9 @@ class DynamicGallery extends React.Component {
                   <div
                     className="item"
                     key={index}
-                    onClick={() => this.props.onSelect(movie)}
+                    onClick={() =>
+                      this.props.history.push("/details/" + movie.imdbID)
+                    }
                   >
                     <img src={movie.Poster} alt="" />
                   </div>
