@@ -8,6 +8,7 @@ import CommentArea from "./components/CommentArea";
 import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import FixedGallery from "./components/FixedGallery";
+import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends React.Component {
   state = {
@@ -26,30 +27,39 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <NavBar onSearch={this.onSearch} />
+      <BrowserRouter>
+        <div className="App">
+          <NavBar onSearch={this.onSearch} />
 
-        <Container fluid className="px-5 mt-5">
-          <CommentArea movieId={this.state.selected} />
-          <DynamicGallery
-            onSelect={this.onSelect}
-            searchQuery={this.state.query}
+          <Route
+            path="/"
+            exact
+            render={(props) => (
+              <Container fluid className="px-5 mt-5">
+                <CommentArea movieId={this.state.selected} {...props} />
+                <DynamicGallery
+                  onSelect={this.onSelect}
+                  searchQuery={this.state.query}
+                />
+                <FixedGallery
+                  loadingstate={this.state.loading}
+                  searchQuery="harry potter"
+                />
+                <FixedGallery
+                  loadingstate={this.state.loading}
+                  searchQuery="lord of the rings"
+                />
+                <FixedGallery
+                  loadingstate={this.state.loading}
+                  searchQuery="pokemon"
+                />
+              </Container>
+            )}
           />
-          <FixedGallery
-            loadingstate={this.state.loading}
-            searchQuery="harry potter"
-          />
-          <FixedGallery
-            loadingstate={this.state.loading}
-            searchQuery="lord of the rings"
-          />
-          <FixedGallery
-            loadingstate={this.state.loading}
-            searchQuery="pokemon"
-          />
-        </Container>
-        <Footer />
-      </div>
+
+          <Footer />
+        </div>
+      </BrowserRouter>
     );
   }
 }

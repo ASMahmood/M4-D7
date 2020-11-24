@@ -10,6 +10,8 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 let attempt = 1;
 class NavBar extends React.Component {
   state = {
@@ -31,14 +33,17 @@ class NavBar extends React.Component {
   render() {
     return (
       <Navbar bg="dark" expand="lg" className="navbar">
-        <Navbar.Brand href="#home">
-          <img
-            src="https://fontmeme.com/permalink/201016/43d068e8e91bfc2ab70c55cd3afe6508.png"
-            alt="netflix-font"
-            border="0"
-            class="mt-2"
-          />
-        </Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand>
+            <img
+              src="https://fontmeme.com/permalink/201016/43d068e8e91bfc2ab70c55cd3afe6508.png"
+              alt="netflix-font"
+              border="0"
+              class="mt-2"
+            />
+          </Navbar.Brand>
+        </Link>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
